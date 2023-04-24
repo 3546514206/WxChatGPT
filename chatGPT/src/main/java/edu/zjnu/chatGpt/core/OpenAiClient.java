@@ -65,7 +65,7 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 public class OpenAiClient {
     /**
-     * keys
+     * keys.txt
      */
     @Getter
     @NotNull
@@ -114,7 +114,7 @@ public class OpenAiClient {
         if (Objects.isNull(builder.okHttpClient)) {
             builder.okHttpClient = this.okHttpClient();
         } else {
-            //自定义的okhttpClient  需要增加api keys
+            //自定义的okhttpClient  需要增加api keys.txt
             builder.okHttpClient = builder.okHttpClient
                     .newBuilder()
                     .addInterceptor(new HeaderAuthorizationInterceptor(this.apiKey, this.keyStrategy))
@@ -786,7 +786,7 @@ public class OpenAiClient {
 
     public static final class Builder {
         /**
-         * api keys
+         * api keys.txt
          */
         private @NotNull
         List<String> apiKey;
