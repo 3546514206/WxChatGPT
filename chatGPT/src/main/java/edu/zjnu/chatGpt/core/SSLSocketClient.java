@@ -1,4 +1,4 @@
-package edu.zjnu.chatGpt;
+package edu.zjnu.chatGpt.core;
 
 import javax.net.ssl.*;
 import java.security.KeyStore;
@@ -10,7 +10,7 @@ import java.util.Arrays;
 /**
  * @author: 杨海波
  * @date: 2023-04-24 18:10:14
- * @description: todo
+ * @description: SSLSocketClient
  */
 public class SSLSocketClient {
     //获取这个SSLSocketFactory

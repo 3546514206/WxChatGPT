@@ -1,4 +1,4 @@
-package edu.zjnu.chatGpt;
+package edu.zjnu.chatGpt.core;
 
 import edu.zjnu.chatGpt.entity.billing.BillingUsage;
 import edu.zjnu.chatGpt.entity.billing.CreditGrantsResponse;

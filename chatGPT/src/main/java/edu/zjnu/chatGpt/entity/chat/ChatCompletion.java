@@ -4,7 +4,7 @@ import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import edu.zjnu.chatGpt.OpenAiStreamClient;
+import edu.zjnu.chatGpt.core.OpenAiStreamClient;
 import edu.zjnu.chatGpt.utils.TikTokensUtil;
 import lombok.*;
 import lombok.extern.slf4j.Slf4j;

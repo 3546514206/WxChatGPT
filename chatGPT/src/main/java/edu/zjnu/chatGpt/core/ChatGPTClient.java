@@ -1,4 +1,4 @@
-package edu.zjnu.chatGpt;
+package edu.zjnu.chatGpt.core;
 
 import cn.hutool.core.collection.CollectionUtil;
 import cn.hutool.http.*;

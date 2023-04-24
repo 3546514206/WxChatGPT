@@ -2,6 +2,8 @@ package edu.zjnu.weChat.face;
 
 import edu.zjnu.weChat.beans.BaseMsg;
 
+import java.io.IOException;
+
 /**
  * 消息处理接口
  *
@@ -16,7 +18,7 @@ public interface IMsgHandlerFace {
      * @author SetsunaYang
      * @date 2017年4月20日 上午12:15:00
      */
-    public String textMsgHandle(BaseMsg msg);
+    public String textMsgHandle(BaseMsg msg) throws IOException;
 
     /**
      * 处理图片消息

@@ -3,7 +3,7 @@ package edu.zjnu.chatGpt.service;
 import cn.hutool.crypto.Mode;
 import cn.hutool.crypto.Padding;
 import cn.hutool.crypto.symmetric.AES;
-import edu.zjnu.chatGpt.OpenAiClient;
+import edu.zjnu.chatGpt.core.OpenAiClient;
 import edu.zjnu.chatGpt.entity.chat.ChatChoice;
 import edu.zjnu.chatGpt.entity.chat.ChatCompletion;
 import edu.zjnu.chatGpt.entity.chat.ChatCompletionResponse;
@@ -14,7 +14,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * @author: 杨海波
@@ -28,7 +30,7 @@ public class GptService implements ApplicationContextAware {
 
     public String doChat(String request) {
         String response = null;
-        OpenAiClient openAiClient = OpenAiClient.builder().apiKey(Collections.singletonList(decryptKey()))
+        OpenAiClient openAiClient = OpenAiClient.builder().apiKey(decryptKeys())
                 //自定义key的获取策略：默认KeyRandomStrategy
                 .keyStrategy(new KeyRandomStrategy()).build();
 
@@ -58,16 +60,23 @@ public class GptService implements ApplicationContextAware {
      *
      * @return
      */
-    private String decryptKey() {
+    private List<String> decryptKeys() {
         // key：AES模式下，key必须为16位
-        String key = applicationContext.getEnvironment().getProperty("secret.aes.key", "plikajensixjkeos");
+        String symmetricalKey = applicationContext.getEnvironment().getProperty("secret.aes.key", "plikajensixjkeos");
         // iv：偏移量，ECB模式不需要，CBC模式下必须为16位
         String iv = applicationContext.getEnvironment().getProperty("secret.aes.iv", "qscvbnjiokhtsgeu");
         // 密文
-        String encrypt = applicationContext.getEnvironment().getProperty("secret.aes.ciphertext", "");
+        String encryptKey = applicationContext.getEnvironment().getProperty("secret.aes.ciphertext", "");
+        String[] encryptKeys = encryptKey.split(",");
 
-        AES aes = new AES(Mode.CBC, Padding.PKCS5Padding, key.getBytes(), iv.getBytes());
-        // 解密为字符串
-        return aes.decryptStr(encrypt);
+        AES aes = new AES(Mode.CBC, Padding.PKCS5Padding, symmetricalKey.getBytes(), iv.getBytes());
+
+        List<String> keys = new ArrayList<>();
+        for (String toDecryptKey : encryptKeys) {
+            String key = aes.decryptStr(toDecryptKey);
+            keys.add(key);
+        }
+
+        return keys;
     }
 }

@@ -1,14 +1,22 @@
 package edu.zjnu.weChat.handler;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import edu.zjnu.weChat.api.MessageTools;
 import edu.zjnu.weChat.api.WechatTools;
 import edu.zjnu.weChat.beans.BaseMsg;
 import edu.zjnu.weChat.beans.RecommendInfo;
 import edu.zjnu.weChat.face.IMsgHandlerFace;
+import edu.zjnu.weChat.utils.WxHttpClient;
+import org.apache.http.HttpEntity;
+import org.apache.http.util.EntityUtils;
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.Resource;
+import java.io.IOException;
 
 /**
  * @author: 杨海波
@@ -16,11 +24,12 @@ import javax.annotation.Resource;
  * @description: * @date: 2023-04-24 16:51:02
  */
 @Component
-public class SimpleHandler implements IMsgHandlerFace {
+public class SimpleHandler implements IMsgHandlerFace, ApplicationContextAware {
 
+    private ApplicationContext applicationContext;
 
     @Override
-    public String textMsgHandle(BaseMsg msg) {
+    public String textMsgHandle(BaseMsg msg) throws IOException {
         // 群消息不处理
         if (!msg.isGroupMsg()) {
             // 发送文本消息
@@ -29,7 +38,10 @@ public class SimpleHandler implements IMsgHandlerFace {
                 WechatTools.logout();
             }
 
-            return text;
+            String url = applicationContext.getEnvironment().getProperty("chatGPT.server") + applicationContext.getEnvironment().getProperty("chatGPT.servlet.context-path");
+            HttpEntity httpEntity = WxHttpClient.getInstance().doPost(url, text);
+            String responseEntity = EntityUtils.toString(httpEntity);
+            return responseEntity;
         }
         return null;
     }
@@ -84,4 +96,8 @@ public class SimpleHandler implements IMsgHandlerFace {
         return "文件" + msg.toString() + "保存成功";
     }
 
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 }
