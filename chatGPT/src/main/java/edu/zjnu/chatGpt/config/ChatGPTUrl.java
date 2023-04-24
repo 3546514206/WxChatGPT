@@ -6,7 +6,7 @@ import lombok.Getter;
 /**
  * 描述： api地址
  *
- * @author https:www.unfbx.com
+ * @author SetsunaYang
  * 2023-02-11
  */
 @Getter

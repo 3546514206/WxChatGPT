@@ -23,7 +23,6 @@ import java.util.Map;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年5月4日 下午10:49:16
  */
 public class WechatTools {
     private static Logger LOG = LoggerFactory.getLogger(WechatTools.class);

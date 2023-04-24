@@ -5,7 +5,6 @@ package edu.zjnu.weChat.utils.enums;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年6月29日 下午9:47:14
  */
 public enum VerifyFriendEnum {
 

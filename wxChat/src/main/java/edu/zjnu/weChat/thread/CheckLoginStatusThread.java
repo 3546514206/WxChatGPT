@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年5月17日 下午10:53:15
+ * @date
  */
 public class CheckLoginStatusThread implements Runnable {
     private static Logger LOG = LoggerFactory.getLogger(CheckLoginStatusThread.class);
@@ -24,8 +24,10 @@ public class CheckLoginStatusThread implements Runnable {
     @Override
     public void run() {
         while (core.isAlive()) {
-            long t1 = System.currentTimeMillis(); // 秒为单位
-            if (t1 - core.getLastNormalRetcodeTime() > 60 * 1000) { // 超过60秒，判为离线
+            // 秒为单位
+            long t1 = System.currentTimeMillis();
+            // 超过60秒，判为离线
+            if (t1 - core.getLastNormalRetcodeTime() > 60 * 1000) {
                 core.setAlive(false);
                 LOG.info("微信已离线");
             }

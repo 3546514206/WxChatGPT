@@ -21,7 +21,6 @@ import java.util.regex.Pattern;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年4月8日 下午10:59:55
  */
 public class CommonTools {
 

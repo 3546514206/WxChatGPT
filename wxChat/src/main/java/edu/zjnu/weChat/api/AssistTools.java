@@ -10,7 +10,6 @@ import java.io.IOException;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年5月22日 下午10:34:46
  */
 public class AssistTools {
     private static final MediaType MEDIA_TYPE_PNG = MediaType.parse("image/png");

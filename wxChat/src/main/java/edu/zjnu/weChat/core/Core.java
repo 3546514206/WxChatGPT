@@ -16,7 +16,6 @@ import java.util.Map;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年4月23日 下午2:33:56
  */
 public class Core {
 

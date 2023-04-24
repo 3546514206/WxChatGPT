@@ -9,7 +9,6 @@ import java.io.IOException;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年4月20日 上午12:13:49
  */
 public interface IMsgHandlerFace {
     /**

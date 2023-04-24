@@ -1,7 +1,7 @@
 package edu.zjnu.weChat.utils;
 
 /**
- * Created by xiaoxiaomo on 2017/5/6.
+ *
  */
 public class SleepUtils {
 

@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年4月9日 下午7:05:04
+ * @date
  */
 public class WxHttpClient {
     private static CloseableHttpClient httpClient = HttpClients.createDefault();

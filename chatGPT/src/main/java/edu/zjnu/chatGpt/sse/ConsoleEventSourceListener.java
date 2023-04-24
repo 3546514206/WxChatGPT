@@ -12,7 +12,6 @@ import java.util.Objects;
 /**
  * 描述： sse
  *
- * @author https:www.unfbx.com
  * 2023-02-28
  */
 @Slf4j

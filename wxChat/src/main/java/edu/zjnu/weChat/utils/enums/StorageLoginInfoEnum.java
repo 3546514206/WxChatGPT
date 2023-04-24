@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 
 /**
- * Created by xiaoxiaomo on 2017/5/7.
  */
 public enum StorageLoginInfoEnum {
 

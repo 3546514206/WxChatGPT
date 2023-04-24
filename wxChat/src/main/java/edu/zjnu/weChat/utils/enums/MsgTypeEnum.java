@@ -6,7 +6,6 @@ package edu.zjnu.weChat.utils.enums;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年5月13日 下午11:53:00
  */
 public enum MsgTypeEnum {
     TEXT("Text", "文本消息"),

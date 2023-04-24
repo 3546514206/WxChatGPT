@@ -3,7 +3,6 @@ package edu.zjnu.chatGpt.exception;
 /**
  * 描述： 错误
  *
- * @author https:www.unfbx.com
  * 2023-02-11
  */
 public enum CommonError implements IError {

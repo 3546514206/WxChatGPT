@@ -7,7 +7,6 @@ import java.io.Serializable;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年7月3日 下午10:38:14
  */
 public class AppInfo implements Serializable {
     /**

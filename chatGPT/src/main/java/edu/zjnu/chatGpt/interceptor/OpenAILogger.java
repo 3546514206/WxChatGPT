@@ -6,7 +6,6 @@ import okhttp3.logging.HttpLoggingInterceptor;
 /**
  * 描述： 日志
  *
- * @author https:www.unfbx.com
  * 2023-02-28
  */
 @Slf4j

@@ -15,7 +15,6 @@ import java.util.Objects;
 /**
  * 描述：openai 返回值处理Interceptor
  *
- * @author grt
  * @since 2023-03-23
  */
 @Slf4j

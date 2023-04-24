@@ -3,7 +3,6 @@ package edu.zjnu.weChat.utils.enums.parameters;
 /**
  * 登陆
  * <p>
- * Created by xiaoxiaomo on 2017/5/7.
  */
 public enum LoginParaEnum {
 

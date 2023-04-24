@@ -3,7 +3,7 @@ package edu.zjnu.chatGpt.constant;
 /**
  * 描述：
  *
- * @author https:www.unfbx.com
+ * @author SetsunaYang
  * @since 2023-03-06
  */
 public class OpenAIConst {

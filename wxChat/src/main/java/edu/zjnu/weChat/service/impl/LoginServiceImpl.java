@@ -39,7 +39,6 @@ import java.util.regex.Matcher;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年5月13日 上午12:09:35
  */
 public class LoginServiceImpl implements ILoginService {
     private static Logger LOG = LoggerFactory.getLogger(LoginServiceImpl.class);

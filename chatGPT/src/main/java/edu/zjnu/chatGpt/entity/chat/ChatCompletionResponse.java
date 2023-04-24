@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * 描述： chat答案类
  *
- * @author https:www.unfbx.com
+ * @author SetsunaYang
  * 2023-03-02
  */
 @Data

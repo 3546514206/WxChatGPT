@@ -19,7 +19,6 @@ import java.util.regex.Matcher;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年5月14日 下午12:47:50
  */
 public class MsgCenter {
     private static Logger LOG = LoggerFactory.getLogger(MsgCenter.class);

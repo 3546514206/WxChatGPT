@@ -2,7 +2,6 @@ package edu.zjnu.weChat.utils.enums;
 
 /**
  * URL
- * Created by xiaoxiaomo on 2017/5/6.
  */
 public enum URLEnum {
 

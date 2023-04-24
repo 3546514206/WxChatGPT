@@ -58,7 +58,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * 描述： open ai 客户端
  *
- * @author https:www.unfbx.com
+ * @author SetsunaYang
  * @since 2023-02-11
  */
 

@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
  *
  * @author SetsunaYang
  * @version 1.0
- * @date 创建时间：2017年5月13日 下午12:56:07
  */
 public class LoginController {
     private static Logger LOG = LoggerFactory.getLogger(LoginController.class);

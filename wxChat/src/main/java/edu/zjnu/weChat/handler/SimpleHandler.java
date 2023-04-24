@@ -21,7 +21,6 @@ import java.io.IOException;
 /**
  * @author: 杨海波
  * @date: 2023-04-24 16:51:02
- * @description: * @date: 2023-04-24 16:51:02
  */
 @Component
 public class SimpleHandler implements IMsgHandlerFace, ApplicationContextAware {

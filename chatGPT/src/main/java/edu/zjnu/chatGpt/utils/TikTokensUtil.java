@@ -16,7 +16,6 @@ import java.util.*;
 /**
  * 描述：token计算工具类
  *
- * @author https:www.unfbx.com
  * @since 2023-04-04
  */
 @Slf4j

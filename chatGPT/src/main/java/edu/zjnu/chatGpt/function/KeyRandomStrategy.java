@@ -7,7 +7,6 @@ import java.util.List;
 /**
  * 描述：
  *
- * @author https:www.unfbx.com
  * @since 2023-04-03
  */
 public class KeyRandomStrategy implements KeyStrategyFunction<List<String>, String> {

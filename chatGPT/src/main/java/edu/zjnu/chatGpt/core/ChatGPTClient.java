@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
  * 描述： chatgpt客户端
  * 已经弃用，请使用下面的实现方式：
  *
- * @author https:www.unfbx.com
+ * @author SetsunaYang
  * 2023-02-11
  * @see OpenAiClient
  * @see OpenAiStreamClient

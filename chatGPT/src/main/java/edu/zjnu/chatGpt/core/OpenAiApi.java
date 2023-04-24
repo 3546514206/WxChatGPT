@@ -39,7 +39,7 @@ import java.util.Map;
 /**
  * 描述： open ai官方api接口
  *
- * @author https:www.unfbx.com
+ * @author SetsunaYang
  * 2023-02-15
  */
 public interface OpenAiApi {
