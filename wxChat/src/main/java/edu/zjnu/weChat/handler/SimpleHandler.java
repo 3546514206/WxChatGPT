@@ -1,8 +1,6 @@
 package edu.zjnu.weChat.handler;
 
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
 import edu.zjnu.weChat.api.MessageTools;
 import edu.zjnu.weChat.api.WechatTools;
 import edu.zjnu.weChat.beans.BaseMsg;
@@ -47,24 +45,34 @@ public class SimpleHandler implements IMsgHandlerFace, ApplicationContextAware {
 
     @Override
     public String picMsgHandle(BaseMsg msg) {
+        if (msg.isGroupMsg()) {
+            return null;
+        }
 
         return "图片保存成功";
     }
 
     @Override
     public String voiceMsgHandle(BaseMsg msg) {
-
+        if (msg.isGroupMsg()) {
+            return null;
+        }
         return "声音保存成功";
     }
 
     @Override
     public String viedoMsgHandle(BaseMsg msg) {
-
+        if (msg.isGroupMsg()) {
+            return null;
+        }
         return "视频保存成功";
     }
 
     @Override
     public String nameCardMsgHandle(BaseMsg msg) {
+        if (msg.isGroupMsg()) {
+            return null;
+        }
         return "收到名片消息";
     }
 
@@ -75,13 +83,16 @@ public class SimpleHandler implements IMsgHandlerFace, ApplicationContextAware {
      */
     @Override
     public void sysMsgHandle(BaseMsg msg) {
-        String text = msg.getContent();
+        if (!msg.isGroupMsg()) {
+            String text = msg.getContent();
+        }
+
     }
 
     @Override
     public String verifyAddFriendMsgHandle(BaseMsg msg) {
         // 同意好友请求，false为不接受好友请求
-        MessageTools.addFriend(msg, true);
+        MessageTools.addFriend(msg, false);
         RecommendInfo recommendInfo = msg.getRecommendInfo();
         String nickName = recommendInfo.getNickName();
         String province = recommendInfo.getProvince();
@@ -91,7 +102,9 @@ public class SimpleHandler implements IMsgHandlerFace, ApplicationContextAware {
 
     @Override
     public String mediaMsgHandle(BaseMsg msg) {
-
+        if (msg.isGroupMsg()) {
+            return null;
+        }
         return "文件" + msg.toString() + "保存成功";
     }
 
