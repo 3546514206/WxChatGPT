@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>springboot</groupId>
-    <artifactId>wxChat</artifactId>
+    <artifactId>WxChatGPT</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>wxChat</name>
+    <name>WxChatGPT</name>
 
     <!-- Spring Boot 启动父依赖 -->
     <parent>
