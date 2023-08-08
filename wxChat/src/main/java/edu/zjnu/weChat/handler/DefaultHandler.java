@@ -5,10 +5,13 @@ import edu.zjnu.weChat.api.MessageTools;
 import edu.zjnu.weChat.api.WechatTools;
 import edu.zjnu.weChat.beans.BaseMsg;
 import edu.zjnu.weChat.beans.RecommendInfo;
+import edu.zjnu.weChat.excp.BaseException;
 import edu.zjnu.weChat.face.IMsgHandlerFace;
-import edu.zjnu.weChat.utils.WxHttpClient;
-import org.apache.http.HttpEntity;
-import org.apache.http.util.EntityUtils;
+import edu.zjnu.weChat.strategy.ChatRequest;
+import edu.zjnu.weChat.strategy.ChatResponse;
+import edu.zjnu.weChat.strategy.Strategy;
+import edu.zjnu.weChat.strategy.StrategyContext;
+import edu.zjnu.weChat.utils.ClassUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -18,10 +21,12 @@ import java.io.IOException;
 
 /**
  * @author: 杨海波
- * @date: 2023-04-24 16:51:02
+ * @date: 2023-04-24 12:51:02
  */
 @Component
-public class SimpleHandler implements IMsgHandlerFace, ApplicationContextAware {
+public class DefaultHandler implements IMsgHandlerFace, ApplicationContextAware {
+
+    private static StrategyContext defaultStrategyContext;
 
     private ApplicationContext applicationContext;
 
@@ -31,17 +36,56 @@ public class SimpleHandler implements IMsgHandlerFace, ApplicationContextAware {
         if (!msg.isGroupMsg()) {
             // 发送文本消息
             String text = msg.getText();
+            // 登出指令
             if ("exit".equals(text)) {
                 WechatTools.logout();
             }
 
-            String url = applicationContext.getEnvironment().getProperty("chatGPT.server") + applicationContext.getEnvironment().getProperty("chatGPT.servlet.context-path");
-            HttpEntity httpEntity = WxHttpClient.getInstance().doPost(url, text);
-            String responseEntity = EntityUtils.toString(httpEntity);
-            return responseEntity;
+            // 聊天模型策略
+            StrategyContext context = getStrategyContext();
+            // 构建聊天请求
+            ChatRequest request = buildChatRequest(msg);
+            // 进行聊天
+            ChatResponse response = context.executeStrategy(request);
+            // 返回结果
+            return response.getResponse();
         }
         return null;
     }
+
+    /**
+     * @return
+     */
+    private StrategyContext getStrategyContext() {
+
+        if (defaultStrategyContext != null) {
+            return defaultStrategyContext;
+        }
+
+        return buildAndCachedStrategyContext();
+    }
+
+    private StrategyContext buildAndCachedStrategyContext() {
+        String strategyClassPath = applicationContext.getEnvironment().getProperty("strategy.classPath");
+
+        Strategy strategy = (Strategy) ClassUtils.createInstance(strategyClassPath);
+        if (strategy == null) {
+            throw new BaseException("strategy not defined");
+        }
+
+        defaultStrategyContext = new StrategyContext(strategy);
+
+        return defaultStrategyContext;
+    }
+
+    /**
+     * @param msg
+     * @return
+     */
+    private ChatRequest buildChatRequest(BaseMsg msg) {
+        return new ChatRequest(msg.getText());
+    }
+
 
     @Override
     public String picMsgHandle(BaseMsg msg) {
