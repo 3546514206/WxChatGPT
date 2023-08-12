@@ -3,7 +3,7 @@ package edu.zjnu.weChat.strategy.impl.tuling;
 /**
  * @author: 杨海波
  * @date: 2023-08-07 17:17:17
- * @description: todo
+ * @description: Location
  */
 public class Location {
 

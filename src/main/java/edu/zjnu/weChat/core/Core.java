@@ -32,21 +32,30 @@ public class Core {
     private String indexUrl;
     private String userName;
     private String nickName;
+    // 群
     private List<BaseMsg> msgList = new ArrayList<BaseMsg>();
-    ; // 群
-    private JSONObject userSelf; // 登陆账号自身信息
-    private List<JSONObject> memberList = new ArrayList<JSONObject>(); // 好友+群聊+公众号+特殊账号
-    ;// 公众号／服务号
-    private List<JSONObject> contactList = new ArrayList<JSONObject>();// 好友
-    ;// 特殊账号
+
+    // 登陆账号自身信息
+    private JSONObject userSelf;
+    // 好友+群聊+公众号+特殊账号
+    private List<JSONObject> memberList = new ArrayList<JSONObject>();
+    // 公众号／服务号
+    // 好友
+    private List<JSONObject> contactList = new ArrayList<JSONObject>();
+    // 特殊账号
     private List<JSONObject> groupList = new ArrayList<JSONObject>();
-    private Map<String, JSONArray> groupMemeberMap = new HashMap<String, JSONArray>(); // 群聊成员字典
+    // 群聊成员字典
+    private Map<String, JSONArray> groupMemeberMap = new HashMap<String, JSONArray>();
     private List<JSONObject> publicUsersList = new ArrayList<JSONObject>();
     private List<JSONObject> specialUsersList = new ArrayList<JSONObject>();
-    private List<String> groupIdList = new ArrayList<String>(); // 群ID列表
-    private List<String> groupNickNameList = new ArrayList<String>(); // 群NickName列表
+    // 群ID列表
+    private List<String> groupIdList = new ArrayList<String>();
+    // 群NickName列表
+    private List<String> groupNickNameList = new ArrayList<String>();
     private Map<String, JSONObject> userInfoMap = new HashMap<String, JSONObject>();
-    private long lastNormalRetcodeTime; // 最后一次收到正常retcode的时间，秒为单位
+    // 最后一次收到正常retcode的时间，秒为单位
+    private long lastNormalRetcodeTime;
+
     private Core() {
 
     }

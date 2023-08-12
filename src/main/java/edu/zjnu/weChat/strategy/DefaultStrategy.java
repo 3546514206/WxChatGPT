@@ -1,6 +1,6 @@
 package edu.zjnu.weChat.strategy;
 
-import edu.zjnu.weChat.excp.BaseException;
+import edu.zjnu.weChat.excp.GptRuntimeException;
 import edu.zjnu.weChat.utils.WxHttpClient;
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
@@ -29,7 +29,7 @@ public class DefaultStrategy implements Strategy, ApplicationContextAware {
         try {
             String responseEntity = EntityUtils.toString(httpEntity);
         } catch (IOException e) {
-            throw new BaseException("parse error");
+            throw new GptRuntimeException("parse error");
         }
 
 

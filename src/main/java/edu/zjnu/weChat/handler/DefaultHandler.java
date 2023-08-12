@@ -5,7 +5,7 @@ import edu.zjnu.weChat.api.MessageTools;
 import edu.zjnu.weChat.api.WechatTools;
 import edu.zjnu.weChat.beans.BaseMsg;
 import edu.zjnu.weChat.beans.RecommendInfo;
-import edu.zjnu.weChat.excp.BaseException;
+import edu.zjnu.weChat.excp.GptRuntimeException;
 import edu.zjnu.weChat.face.IMsgHandlerFace;
 import edu.zjnu.weChat.strategy.ChatRequest;
 import edu.zjnu.weChat.strategy.ChatResponse;
@@ -70,7 +70,7 @@ public class DefaultHandler implements IMsgHandlerFace, ApplicationContextAware 
 
         Strategy strategy = (Strategy) ClassUtils.createInstance(strategyClassPath);
         if (strategy == null) {
-            throw new BaseException("strategy not defined");
+            throw new GptRuntimeException("strategy not defined");
         }
 
         defaultStrategyContext = new StrategyContext(strategy);

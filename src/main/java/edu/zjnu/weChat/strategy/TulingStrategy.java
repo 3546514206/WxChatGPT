@@ -2,7 +2,7 @@ package edu.zjnu.weChat.strategy;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import edu.zjnu.weChat.excp.BaseException;
+import edu.zjnu.weChat.excp.GptRuntimeException;
 import edu.zjnu.weChat.strategy.impl.tuling.*;
 import edu.zjnu.weChat.utils.WxHttpClient;
 import org.apache.http.HttpEntity;
@@ -32,7 +32,7 @@ public class TulingStrategy implements Strategy {
         try {
             tulingResponseStr = EntityUtils.toString(httpEntity);
         } catch (IOException e) {
-            throw new BaseException("parse error");
+            throw new GptRuntimeException("parse error");
         }
 
         TulingResponse tulingResponse = JSON.parseObject(tulingResponseStr, TulingResponse.class);
