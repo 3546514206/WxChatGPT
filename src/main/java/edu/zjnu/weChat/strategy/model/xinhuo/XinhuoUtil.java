@@ -67,12 +67,13 @@ public class XinhuoUtil extends WebSocketListener {
 
     }
 
-    public static boolean canAddHistory() {  // 由于历史记录最大上线1.2W左右，需要判断是能能加入历史
-        int history_length = 0;
+    // 由于历史记录最大上线1.2W左右，需要判断是能能加入历史
+    public static boolean canAddHistory() {
+        int historyLength = 0;
         for (RoleContent temp : historyList) {
-            history_length = history_length + temp.content.length();
+            historyLength = historyLength + temp.content.length();
         }
-        if (history_length > 12000) {
+        if (historyLength > 12000) {
             historyList.remove(0);
             historyList.remove(1);
             historyList.remove(2);
