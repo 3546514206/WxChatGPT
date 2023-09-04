@@ -3,7 +3,7 @@ package edu.zjnu.weChat.strategy.model.tuling;
 /**
  * @author: 杨海波
  * @date: 2023-08-07 17:07:05
- * @description: todo
+ * @description: TulingRequest
  */
 public class TulingRequest {
 
