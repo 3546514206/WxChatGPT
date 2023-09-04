@@ -3,7 +3,7 @@ package edu.zjnu.weChat.controller;
 import edu.zjnu.weChat.api.WechatTools;
 import edu.zjnu.weChat.core.Core;
 import edu.zjnu.weChat.service.ILoginService;
-import edu.zjnu.weChat.service.impl.LoginServiceImpl;
+import edu.zjnu.weChat.service.impl.LoginService;
 import edu.zjnu.weChat.thread.CheckLoginStatusThread;
 import edu.zjnu.weChat.utils.SleepUtils;
 import edu.zjnu.weChat.utils.tools.CommonTools;
@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class LoginController {
     private static Logger LOG = LoggerFactory.getLogger(LoginController.class);
     private static Core core = Core.getInstance();
-    private ILoginService loginService = new LoginServiceImpl();
+    private ILoginService loginService = new LoginService();
 
     public void login(String qrPath) {
         if (core.isAlive()) { // 已登陆

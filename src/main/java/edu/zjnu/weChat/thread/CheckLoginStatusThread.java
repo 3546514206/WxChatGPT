@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
  * 检查微信在线状态
  * <p>
  * 如何来感知微信状态？
- * 微信会有心跳包，LoginServiceImpl.syncCheck()正常在线情况下返回的消息中retcode报文应该为"0"，心跳间隔一般在25秒，
+ * 微信会有心跳包，LoginService.syncCheck()正常在线情况下返回的消息中retcode报文应该为"0"，心跳间隔一般在25秒，
  * 那么可以通过最后收到正常报文的时间来作为判断是否在线的依据。若报文间隔大于60秒，则认为已掉线。
  * </p>
  *

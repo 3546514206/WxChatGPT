@@ -40,15 +40,15 @@ import java.util.regex.Matcher;
  * @author SetsunaYang
  * @version 1.0
  */
-public class LoginServiceImpl implements ILoginService {
-    private static Logger LOG = LoggerFactory.getLogger(LoginServiceImpl.class);
+public class LoginService implements ILoginService {
+    private static Logger LOG = LoggerFactory.getLogger(LoginService.class);
 
     private Core core = Core.getInstance();
     private WxHttpClient httpClient = core.getMyHttpClient();
 
     private WxHttpClient wxHttpClient = core.getMyHttpClient();
 
-    public LoginServiceImpl() {
+    public LoginService() {
 
     }
 
