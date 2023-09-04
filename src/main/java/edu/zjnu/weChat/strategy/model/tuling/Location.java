@@ -1,4 +1,4 @@
-package edu.zjnu.weChat.strategy.impl.tuling;
+package edu.zjnu.weChat.strategy.model.tuling;
 
 /**
  * @author: 杨海波

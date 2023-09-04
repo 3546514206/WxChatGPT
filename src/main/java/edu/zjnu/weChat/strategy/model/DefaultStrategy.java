@@ -1,6 +1,9 @@
-package edu.zjnu.weChat.strategy;
+package edu.zjnu.weChat.strategy.model;
 
 import edu.zjnu.weChat.excp.GptRuntimeException;
+import edu.zjnu.weChat.strategy.ChatRequest;
+import edu.zjnu.weChat.strategy.ChatResponse;
+import edu.zjnu.weChat.strategy.Strategy;
 import edu.zjnu.weChat.utils.WxHttpClient;
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;

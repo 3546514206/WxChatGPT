@@ -1,4 +1,8 @@
-package edu.zjnu.weChat.strategy;
+package edu.zjnu.weChat.strategy.model;
+
+import edu.zjnu.weChat.strategy.ChatRequest;
+import edu.zjnu.weChat.strategy.ChatResponse;
+import edu.zjnu.weChat.strategy.Strategy;
 
 /**
  * @author: 杨海波
@@ -14,4 +18,6 @@ public class XinhuoStrategy implements Strategy {
         // todo
         return null;
     }
+
+
 }

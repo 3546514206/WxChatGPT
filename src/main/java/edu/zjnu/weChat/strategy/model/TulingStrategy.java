@@ -1,9 +1,12 @@
-package edu.zjnu.weChat.strategy;
+package edu.zjnu.weChat.strategy.model;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import edu.zjnu.weChat.excp.GptRuntimeException;
-import edu.zjnu.weChat.strategy.impl.tuling.*;
+import edu.zjnu.weChat.strategy.ChatRequest;
+import edu.zjnu.weChat.strategy.ChatResponse;
+import edu.zjnu.weChat.strategy.Strategy;
+import edu.zjnu.weChat.strategy.model.tuling.*;
 import edu.zjnu.weChat.utils.WxHttpClient;
 import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
