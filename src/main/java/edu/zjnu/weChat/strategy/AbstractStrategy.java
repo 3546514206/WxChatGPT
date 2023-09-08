@@ -12,7 +12,7 @@ import java.io.IOException;
  * @date: 2023-09-08 21:31:47
  * @description: AbstractStrategy
  */
-public abstract class AbstractStrategy implements Strategy {
+public abstract class AbstractStrategy implements IStrategy {
 
 
     /**

@@ -5,7 +5,7 @@ package edu.zjnu.weChat.strategy;
  * @date: 2023-08-07 15:41:25
  * @description: 策略接口
  */
-public interface Strategy {
+public interface IStrategy {
 
     /**
      * @param request
