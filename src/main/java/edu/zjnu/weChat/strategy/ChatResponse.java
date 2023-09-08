@@ -7,17 +7,36 @@ package edu.zjnu.weChat.strategy;
  */
 public class ChatResponse {
 
-    String response;
+    /**
+     * 完整的报文返回塞在这里
+     */
+    String responseStr;
+
+    /**
+     * 聊天对话结果放在这里
+     */
+    String result;
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
+    }
 
     public ChatResponse(String tulingResponseStr) {
-        this.response = tulingResponseStr;
+        this.responseStr = tulingResponseStr;
     }
 
-    public String getResponse() {
-        return response;
+    public String getResponseStr() {
+        return responseStr;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public void setResponseStr(String responseStr) {
+        this.responseStr = responseStr;
+    }
+
+    public ChatResponse() {
     }
 }

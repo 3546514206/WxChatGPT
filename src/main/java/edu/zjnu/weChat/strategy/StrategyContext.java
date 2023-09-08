@@ -7,13 +7,13 @@ package edu.zjnu.weChat.strategy;
  */
 public class StrategyContext {
 
-    private Strategy strategy;
+    private AbstractStrategy strategy;
 
-    public StrategyContext(Strategy strategy){
+    public StrategyContext(AbstractStrategy strategy){
         this.strategy = strategy;
     }
 
     public ChatResponse executeStrategy(ChatRequest request){
-        return strategy.doOperation(request);
+        return strategy.exec(request);
     }
 }

@@ -1,24 +1,17 @@
 package edu.zjnu.weChat.strategy.model;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import edu.zjnu.weChat.excp.GptRuntimeException;
+import edu.zjnu.weChat.strategy.AbstractStrategy;
 import edu.zjnu.weChat.strategy.ChatRequest;
 import edu.zjnu.weChat.strategy.ChatResponse;
-import edu.zjnu.weChat.strategy.Strategy;
 import edu.zjnu.weChat.strategy.model.tuling.*;
-import edu.zjnu.weChat.utils.WxHttpClient;
-import org.apache.http.HttpEntity;
-import org.apache.http.util.EntityUtils;
-
-import java.io.IOException;
 
 /**
  * @author: 杨海波
  * @date: 2023-08-07 16:50:29
  * @description: TulingStrategy
  */
-public class TulingStrategy implements Strategy {
+public class TulingStrategy extends AbstractStrategy {
 
     private final String baseUrl = "http://openapi.turingapi.com/openapi/api/v2";
 
@@ -26,31 +19,33 @@ public class TulingStrategy implements Strategy {
 
     private final String userId = "362079";
 
+
     @Override
-    public ChatResponse doOperation(ChatRequest request) {
-        TulingRequest tulingRequest = postTulingRequest(request);
-        String tulingRequestStr = JSONObject.toJSONString(tulingRequest);
-        HttpEntity httpEntity = WxHttpClient.getInstance().doPost(baseUrl, tulingRequestStr);
-        String tulingResponseStr;
-        try {
-            tulingResponseStr = EntityUtils.toString(httpEntity);
-        } catch (IOException e) {
-            throw new GptRuntimeException("parse error");
-        }
-
-        TulingResponse tulingResponse = JSON.parseObject(tulingResponseStr, TulingResponse.class);
-        String chatResponseStr = "";
-        for (Result result : tulingResponse.getResults()) {
-            if ("text".equals(result.getResultType())) {
-                chatResponseStr = result.getValues().getText();
-            }
-        }
-
-        return new ChatResponse(chatResponseStr);
+    protected String doExec(ChatRequest request) {
+        String requestStr = JSONObject.toJSONString((TulingRequest) request);
+        // 执行通讯请求
+        return doHttp(baseUrl, requestStr);
     }
 
-    private TulingRequest postTulingRequest(ChatRequest request) {
+    @Override
+    protected ChatResponse postChatResponse(String responseStr) {
+        TulingResponse tulingResponse = JSONObject.parseObject(responseStr, TulingResponse.class);
+
+        for (Result result : tulingResponse.getResults()) {
+            if ("text".equals(result.getResultType())) {
+                // 设置最终结果
+                tulingResponse.setResult(result.getValues().getText());
+            }
+        }
+        // 主动向下转型，屏蔽返回的其他数据
+        return tulingResponse;
+    }
+
+    @Override
+    protected ChatRequest postChatRequest(ChatRequest request) {
         TulingRequest tulingRequest = new TulingRequest();
+        tulingRequest.setRequest(request.getRequest());
+
         tulingRequest.setRequestType("0");
 
         Perception perception = new Perception();
@@ -84,4 +79,5 @@ public class TulingStrategy implements Strategy {
 
         return tulingRequest;
     }
+
 }

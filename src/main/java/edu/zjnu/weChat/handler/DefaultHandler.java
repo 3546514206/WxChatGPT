@@ -7,10 +7,7 @@ import edu.zjnu.weChat.beans.BaseMsg;
 import edu.zjnu.weChat.beans.RecommendInfo;
 import edu.zjnu.weChat.excp.GptRuntimeException;
 import edu.zjnu.weChat.face.IMsgHandlerFace;
-import edu.zjnu.weChat.strategy.ChatRequest;
-import edu.zjnu.weChat.strategy.ChatResponse;
-import edu.zjnu.weChat.strategy.Strategy;
-import edu.zjnu.weChat.strategy.StrategyContext;
+import edu.zjnu.weChat.strategy.*;
 import edu.zjnu.weChat.utils.ClassUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -18,7 +15,6 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * @author: 杨海波
@@ -49,7 +45,7 @@ public class DefaultHandler implements IMsgHandlerFace, ApplicationContextAware 
             // 进行聊天
             ChatResponse response = context.executeStrategy(request);
             // 返回结果
-            return response.getResponse();
+            return response.getResult();
         }
         return null;
     }
@@ -69,7 +65,7 @@ public class DefaultHandler implements IMsgHandlerFace, ApplicationContextAware 
     private StrategyContext buildAndCachedStrategyContext() {
         String strategyClassPath = applicationContext.getEnvironment().getProperty("strategy.classPath");
 
-        Strategy strategy = (Strategy) ClassUtils.createInstance(strategyClassPath);
+        AbstractStrategy strategy = (AbstractStrategy) ClassUtils.createInstance(strategyClassPath);
         if (strategy == null) {
             throw new GptRuntimeException("strategy not defined");
         }

@@ -1,11 +1,13 @@
 package edu.zjnu.weChat.strategy.model.tuling;
 
+import edu.zjnu.weChat.strategy.ChatRequest;
+
 /**
  * @author: 杨海波
  * @date: 2023-08-07 17:07:05
  * @description: TulingRequest
  */
-public class TulingRequest {
+public class TulingRequest extends ChatRequest {
 
     private   String requestType;
 

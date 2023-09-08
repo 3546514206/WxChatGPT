@@ -20,4 +20,7 @@ public class ChatRequest {
     public ChatRequest(String request) {
         this.request = request;
     }
+
+    public ChatRequest() {
+    }
 }

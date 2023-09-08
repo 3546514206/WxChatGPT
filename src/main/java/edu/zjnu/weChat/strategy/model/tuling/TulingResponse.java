@@ -1,6 +1,7 @@
 package edu.zjnu.weChat.strategy.model.tuling;
 
 import com.alibaba.fastjson.annotation.JSONField;
+import edu.zjnu.weChat.strategy.ChatResponse;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  * @date: 2023-08-07 19:13:36
  * @description: TulingResponse
  */
-public class TulingResponse {
+public class TulingResponse extends ChatResponse {
 
     @JSONField(name = "intent")
     private Intent intent;

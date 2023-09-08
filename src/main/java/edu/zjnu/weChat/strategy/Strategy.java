@@ -11,5 +11,5 @@ public interface Strategy {
      * @param request
      * @return
      */
-    ChatResponse doOperation(ChatRequest request);
+    ChatResponse exec(ChatRequest request);
 }
