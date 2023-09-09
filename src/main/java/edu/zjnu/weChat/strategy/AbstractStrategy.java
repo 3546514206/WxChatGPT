@@ -6,11 +6,12 @@ import org.apache.http.HttpEntity;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author: 杨海波
  * @date: 2023-09-08 21:31:47
- * @description: AbstractStrategy
+ * @description: 抽象策略类，用于定义算法模板
  */
 public abstract class AbstractStrategy implements IStrategy {
 
@@ -22,8 +23,8 @@ public abstract class AbstractStrategy implements IStrategy {
      * @param requestStr
      * @return
      */
-    protected String doHttp(String url, String requestStr) {
-        HttpEntity httpEntity = WxHttpClient.getInstance().doPost(url, requestStr);
+    protected String doHttp(String url, String requestStr, Map<String, String> headers) {
+        HttpEntity httpEntity = WxHttpClient.getInstance().doPost(url, requestStr, headers);
         String responseStr;
         try {
             responseStr = EntityUtils.toString(httpEntity);

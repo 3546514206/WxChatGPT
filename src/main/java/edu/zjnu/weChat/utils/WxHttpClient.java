@@ -1,5 +1,6 @@
 package edu.zjnu.weChat.utils;
 
+import cn.hutool.core.collection.CollectionUtil;
 import org.apache.http.Consts;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.ClientProtocolException;
@@ -91,8 +92,7 @@ public class WxHttpClient {
      * @author SetsunaYang
      * @date 2017年4月9日 下午7:06:19
      */
-    public HttpEntity doGet(String url, List<BasicNameValuePair> params, boolean redirect,
-                            Map<String, String> headerMap) {
+    public HttpEntity doGet(String url, List<BasicNameValuePair> params, boolean redirect, Map<String, String> headerMap) {
         HttpEntity entity = null;
         HttpGet httpGet = new HttpGet();
 
@@ -128,12 +128,25 @@ public class WxHttpClient {
      * 处理POST请求
      *
      * @param url
-     * @param params
+     * @param paramsStr
      * @return
      * @author SetsunaYang
      * @date 2017年4月9日 下午7:06:35
      */
     public HttpEntity doPost(String url, String paramsStr) {
+        return doPost(url, paramsStr, null);
+    }
+
+    /**
+     * 处理POST请求,允许设置h eader
+     *
+     * @param url
+     * @param paramsStr
+     * @return
+     * @author SetsunaYang
+     * @date 2023年4月9日 下午7:06:35
+     */
+    public HttpEntity doPost(String url, String paramsStr, Map<String, String> header) {
         HttpEntity entity = null;
         HttpPost httpPost = new HttpPost();
         try {
@@ -141,11 +154,16 @@ public class WxHttpClient {
             httpPost = new HttpPost(url);
             httpPost.setEntity(params);
             httpPost.setHeader("Content-type", "application/json; charset=utf-8");
-            httpPost.setHeader("User-Agent", Config.USER_AGENT);
+
+            // 定制化 header
+            if (!CollectionUtil.isEmpty(header)) {
+                for (String key : header.keySet()) {
+                    httpPost.setHeader(key, header.get(key));
+                }
+            }
+
             CloseableHttpResponse response = httpClient.execute(httpPost);
             entity = response.getEntity();
-        } catch (ClientProtocolException e) {
-            logger.info(e.getMessage());
         } catch (IOException e) {
             logger.info(e.getMessage());
         }

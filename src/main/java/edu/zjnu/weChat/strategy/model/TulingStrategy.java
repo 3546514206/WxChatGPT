@@ -22,9 +22,9 @@ public class TulingStrategy extends AbstractStrategy {
 
     @Override
     protected String doExec(ChatRequest request) {
-        String requestStr = JSONObject.toJSONString((TulingRequest) request);
+        String requestStr = JSONObject.toJSONString(request);
         // 执行通讯请求
-        return doHttp(baseUrl, requestStr);
+        return doHttp(baseUrl, requestStr, null);
     }
 
     @Override
